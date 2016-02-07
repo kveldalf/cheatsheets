@@ -240,6 +240,10 @@ Examples:
 SELECT * FROM people WHERE last_name IS NULL;
 SELECT * FROM vhs_rentals WHERE returned_on IS NULL;
 SELECT * FROM car_rentals WHERE returned_on IS NULL AND location = "PDX";
+SELECT * FROM movies WHERE title IS NULL OR year_released IS NULL OR genre IS NULL; 
+--which can be more concisely expressed as
+SELECT * FROM movies WHERE (title || year_released || genre) IS NULL; 
+
 ```
 
 To filter out missing values use can use `IS NOT NULL`.
@@ -254,9 +258,4 @@ Examples
 SELECT * FROM people WHERE email IS NOT NULL;
 SELECT * FROM addresses WHERE zip_code IS NOT NULL;
 -- Find all movies with any missing data
-
-SELECT * FROM movies WHERE title IS NULL OR year_released IS NULL OR genre IS NULL; 
-which can be more concisely expressed as
-SELECT * FROM movies WHERE (title || year_released || genre) IS NULL; 
-
 ```
